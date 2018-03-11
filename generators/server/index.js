@@ -112,12 +112,12 @@ module.exports = class extends BaseGenerator {
         this.template('mvn/site.xml.ejs', 'src/site/site.xml');
         this.copy('RELEASE.md', 'RELEASE.md');
         // order matter!
-        this.replaceContent(
+        /* this.replaceContent(
             'pom.xml',
             '<version>(\\s)*?</version>\n<packaging>',
             '<packaging>',
             true
-        );
+        ); */
         this.replaceContent(
             'pom.xml',
             `<groupId>${this.packageName}</groupId>`,

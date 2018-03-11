@@ -3088,7 +3088,7 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 128
+  Exit code: 1
   Command: sh
   Arguments: -c git push && git push --tags && npm publish
   Directory: /Users/charliemordant/Code/Sources/jhipster/generator-jhipster-enterprise-pom
