@@ -60,7 +60,7 @@ module.exports = class extends BaseGenerator {
     }
 
     writing() {
-        const done = this.async();
+        // const done = this.async();
         // function to use directly template
         this.template = function (source, destination) {
             this.fs.copyTpl(
@@ -125,7 +125,7 @@ module.exports = class extends BaseGenerator {
         );
 
 
-        done();
+        // done();
         // return writeFiles();
     }
 
