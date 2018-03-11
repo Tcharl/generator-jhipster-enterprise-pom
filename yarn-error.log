@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.7.1_1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js release
+  /usr/local/Cellar/node/9.7.1_1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js test
 
 PATH: 
   /usr/local/opt/coreutils/libexec/gnubin:/opt/chefdk/bin:/Users/charliemordant/.chefdk/gem/ruby/2.4.0/bin:/opt/chefdk/embedded/bin:/Users/charliemordant/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/opt/X11/bin:/usr/local/git/bin:/opt/chefdk/gitbin
@@ -16,7 +16,7 @@ Platform:
 npm manifest: 
   {
     "name": "generator-jhipster-enterprise-pom",
-    "version": "0.0.1",
+    "version": "0.0.4",
     "description": "This module enables release management using the maven release plugin, as well as maven site generation, which aggregagtes reports and provide a site from them",
     "keywords": [
       "yeoman-generator",
@@ -3090,7 +3090,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c git push && git push --tags && npm publish
+  Arguments: -c mocha test/*
   Directory: /Users/charliemordant/Code/Sources/jhipster/generator-jhipster-enterprise-pom
   Output:
   

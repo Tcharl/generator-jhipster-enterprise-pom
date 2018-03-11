@@ -5,16 +5,12 @@ const fse = require('fs-extra');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
-const deps = [
-    [helpers.createDummyGenerator(), 'jhipster:modules']
-];
-
 describe('JHipster generator enterprise-pom', () => {
     beforeEach((done) => {
         helpers
             .run(path.join(__dirname, '../generators/server'))
             .inTmpDir((dir) => {
-                fse.copySync(path.join(__dirname, './templates/maven-enterprisepom'), dir);
+                fse.copySync(path.join(__dirname, '../test/templates/maven-enterprisepom'), dir);
             })
             .withOptions({
                 testmode: true
@@ -22,7 +18,6 @@ describe('JHipster generator enterprise-pom', () => {
             .withPrompts({
                 mavenEnterprise: 'y'
             })
-            .withGenerators(deps)
             .on('end', done);
     });
 

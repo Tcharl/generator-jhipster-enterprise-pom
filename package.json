@@ -1,10 +1,11 @@
 {
   "name": "generator-jhipster-enterprise-pom",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "This module enables release management using the maven release plugin, as well as maven site generation, which aggregagtes reports and provide a site from them",
   "keywords": [
     "yeoman-generator",
-    "jhipster-module"
+    "jhipster-module",
+    "maven"
   ],
   "homepage": "https://github.com/Tcharl/generator-jhipster-enterprise-pom",
   "author": {

@@ -11,11 +11,6 @@ const _ = require('lodash');
 module.exports = class extends BaseGenerator {
     get initializing() {
         return {
-            init(args) {
-                if (args === 'default') {
-                    // do something when argument is 'default'
-                }
-            },
             readConfig() {
                 this.jhipsterAppConfig = this.getJhipsterAppConfig();
                 if (!this.jhipsterAppConfig) {
@@ -37,10 +32,10 @@ module.exports = class extends BaseGenerator {
     }
 
     prompting() {
-        /* if (jhipsterAppConfig.buildTool !== 'maven') {
+        if (this.jhipsterAppConfig.buildTool !== 'maven') {
             this.log(chalk.red('Error! The JHipster Maven enterprise module only works with Maven!'));
             process.exit(1);
-        } */
+        }
         const prompts = [
             {
                 type: 'input',
@@ -62,13 +57,7 @@ module.exports = class extends BaseGenerator {
     writing() {
         // const done = this.async();
         // function to use directly template
-        this.template = function (source, destination) {
-            this.fs.copyTpl(
-                this.templatePath(source),
-                this.destinationPath(destination),
-                this
-            );
-        };
+
         // read config from .yo-rc.json
         this.JAVA_VERSION = jhipsterConstants.JAVA_VERSION;
         // const jhipsterAppConfig = this.getJhipsterAppConfig();
@@ -105,12 +94,12 @@ module.exports = class extends BaseGenerator {
         this.log(`buildTool=${this.jhipsterAppConfig.buildTool}`);
 
         this.log('------\n');
-        this.template('mvn/parent.pom.xml.ejs', '.mvn/parent/pom.xml', null, { interpolate: jhipsterConstants.INTERPOLATE_REGEX });
-        this.copy('mvn/mvn.config', '.mvn/maven.config');
-        this.template('mvn/reporting.pom.xml.ejs', '.mvn/reporting/pom.xml', null, { interpolate: jhipsterConstants.INTERPOLATE_REGEX });
-        this.copy('mvn/settings.xml', '.mvn/settings.xml');
-        this.template('mvn/site.xml.ejs', 'src/site/site.xml');
-        this.copy('RELEASE.md', 'RELEASE.md');
+        this.copyTemplate('mvn/parent.pom.xml.ejs', '.mvn/parent/pom.xml', 'template', null, { interpolate: jhipsterConstants.INTERPOLATE_REGEX });
+        this.copyTemplate('mvn/maven.config', '.mvn/maven.config', 'copy');
+        this.copyTemplate('mvn/reporting.pom.xml.ejs', '.mvn/reporting/pom.xml', 'template', null, { interpolate: jhipsterConstants.INTERPOLATE_REGEX });
+        this.copyTemplate('mvn/settings.xml', '.mvn/settings.xml', 'copy');
+        this.copyTemplate('mvn/site.xml.ejs', 'src/site/site.xml', 'template', null, { interpolate: jhipsterConstants.INTERPOLATE_REGEX });
+        this.copyTemplate('RELEASE.md', 'RELEASE.md', 'copy');
         // order matter!
         /* this.replaceContent(
             'pom.xml',
