@@ -1,0 +1,10 @@
+{
+  "generator-jhipster-module": {
+    "promptValues": {
+      "githubName": "Tcharl",
+      "authorName": "Charlie Mordant",
+      "authorEmail": "cmordant1@gmail.com",
+      "authorUrl": "https://blog.osgiliath.net"
+    }
+  }
+}
