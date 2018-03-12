@@ -8,9 +8,9 @@ const helpers = require('yeoman-test');
 describe('JHipster generator enterprise-pom', () => {
     beforeEach((done) => {
         helpers
-            .run(path.join(__dirname, '../generators/server'))
+            .run(path.join(__dirname, '../generators/app'))
             .inTmpDir((dir) => {
-                fse.copySync(path.join(__dirname, '../test/templates/maven-enterprisepom'), dir);
+                fse.copySync(path.join(__dirname, './templates/maven-enterprisepom'), dir);
             })
             .withOptions({
                 testmode: true

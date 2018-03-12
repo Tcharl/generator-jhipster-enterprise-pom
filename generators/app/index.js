@@ -11,6 +11,11 @@ const _ = require('lodash');
 module.exports = class extends BaseGenerator {
     get initializing() {
         return {
+            init(args) {
+                if (args === 'default') {
+                    // do something when argument is 'default'
+                }
+            },
             readConfig() {
                 this.jhipsterAppConfig = this.getJhipsterAppConfig();
                 if (!this.jhipsterAppConfig) {
@@ -101,21 +106,67 @@ module.exports = class extends BaseGenerator {
         this.copyTemplate('mvn/site.xml.ejs', 'src/site/site.xml', 'template', null, { interpolate: jhipsterConstants.INTERPOLATE_REGEX });
         this.copyTemplate('RELEASE.md', 'RELEASE.md', 'copy');
         // order matter!
-        /* this.replaceContent(
+        this.replaceContent(
             'pom.xml',
-            '<version>(\\s)*?</version>\n<packaging>',
+            '<version>(\\w|\.)*?<\/version>\\s*<packaging>',
             '<packaging>',
             true
-        ); */
+        );
+        this.replaceContent(
+            'pom.xml',
+            '<parent>(\\s|\\w|\.)*?<\/parent>',
+            `<groupId>${this.packageName}</groupId>`,
+            true
+        );
         this.replaceContent(
             'pom.xml',
             `<groupId>${this.packageName}</groupId>`,
             `<parent>\n\t<groupId>${this.packageName}</groupId>\n\t<artifactId>${this.dasherizedBaseName}-reporting</artifactId>\n\t<version>0.0.1-SNAPSHOT</version>\n\t<relativePath>.mvn/reporting/pom.xml</relativePath>\n</parent>`
         );
 
+        this.replaceContent(
+            'pom.xml',
+            '<maven\.version>(\\w|\.)*?<\/maven\.version>',
+            '',
+            true
+        );
+        this.replaceContent(
+            'pom.xml',
+            '<maven\.build\.timestamp\.format>(\\w|\.)*?<\/maven\.build\.timestamp\.format>',
+            '',
+            true
+        );
+        this.replaceContent(
+            'pom.xml',
+            '<java\.version>(\\w|\.)*?<\/java\.version>',
+            '',
+            true
+        );
 
-        // done();
-        // return writeFiles();
+        this.replaceContent(
+            'pom.xml',
+            '<project\.build\.sourceEncoding>(\\w|\.)*?<\/project\.build\.sourceEncoding>',
+            '',
+            true
+        );
+        this.replaceContent(
+            'pom.xml',
+            '<project\.reporting\.outputEncoding>(\\w|\.)*?<\/project\.reporting\.outputEncoding>',
+            '',
+            true
+        );
+        this.replaceContent(
+            'pom.xml',
+            '<sonar\.jacoco\.itReportPath>(\\w|\.|\$|\{|\}|\/)*?<\/sonar\.jacoco\.itReportPath>',
+            '',
+            true
+        );
+        this.replaceContent(
+            'pom.xml',
+            '<sonar\.jacoco\.reportPath>(\\w|\.|\$|\{|\}|\/)*?<\/sonar\.jacoco\.reportPath>',
+            '',
+            true
+        );
     }
 
     install() {
@@ -128,3 +179,11 @@ module.exports = class extends BaseGenerator {
         this.log('End of enterprise-pom generator');
     }
 };
+/**
+ *
+ * @param {string} str string
+ * @returns {string} string with regular expressions escaped
+ */
+function escapeRegExp(str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&'); // eslint-disable-line
+}
