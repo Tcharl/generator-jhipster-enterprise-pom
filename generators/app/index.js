@@ -108,13 +108,13 @@ module.exports = class extends BaseGenerator {
         // order matter!
         this.replaceContent(
             'pom.xml',
-            '<version>(\\w|\.)*?<\/version>\\s*<packaging>',
+            '<version>(\\w|\.)*?<\/version>\\s*<packaging>',// eslint-disable-line
             '<packaging>',
             true
         );
         this.replaceContent(
             'pom.xml',
-            '<parent>(\\s|\\w|\.)*?<\/parent>',
+            '<parent>(\\s|\\w|\.)*?<\/parent>',// eslint-disable-line
             `<groupId>${this.packageName}</groupId>`,
             true
         );
@@ -126,44 +126,44 @@ module.exports = class extends BaseGenerator {
 
         this.replaceContent(
             'pom.xml',
-            '<maven\.version>(\\w|\.)*?<\/maven\.version>',
+            '<maven\.version>(\\w|\.)*?<\/maven\.version>',// eslint-disable-line
             '',
             true
         );
         this.replaceContent(
             'pom.xml',
-            '<maven\.build\.timestamp\.format>(\\w|\.)*?<\/maven\.build\.timestamp\.format>',
+            '<maven\.build\.timestamp\.format>(\\w|\.)*?<\/maven\.build\.timestamp\.format>',// eslint-disable-line
             '',
             true
         );
         this.replaceContent(
             'pom.xml',
-            '<java\.version>(\\w|\.)*?<\/java\.version>',
+            '<java\.version>(\\w|\.)*?<\/java\.version>',// eslint-disable-line
             '',
             true
         );
 
         this.replaceContent(
             'pom.xml',
-            '<project\.build\.sourceEncoding>(\\w|\.)*?<\/project\.build\.sourceEncoding>',
+            '<project\.build\.sourceEncoding>(\\w|\.)*?<\/project\.build\.sourceEncoding>',// eslint-disable-line
             '',
             true
         );
         this.replaceContent(
             'pom.xml',
-            '<project\.reporting\.outputEncoding>(\\w|\.)*?<\/project\.reporting\.outputEncoding>',
+            '<project\.reporting\.outputEncoding>(\\w|\.)*?<\/project\.reporting\.outputEncoding>',// eslint-disable-line
             '',
             true
         );
         this.replaceContent(
             'pom.xml',
-            '<sonar\.jacoco\.itReportPath>(\\w|\.|\$|\{|\}|\/)*?<\/sonar\.jacoco\.itReportPath>',
+            '<sonar\.jacoco\.itReportPath>(\\w|\.|\$|\{|\}|\/)*?<\/sonar\.jacoco\.itReportPath>',// eslint-disable-line
             '',
             true
         );
         this.replaceContent(
             'pom.xml',
-            '<sonar\.jacoco\.reportPath>(\\w|\.|\$|\{|\}|\/)*?<\/sonar\.jacoco\.reportPath>',
+            '<sonar\.jacoco\.reportPath>(\\w|\.|\$|\{|\}|\/)*?<\/sonar\.jacoco\.reportPath>',// eslint-disable-line
             '',
             true
         );
@@ -179,11 +179,3 @@ module.exports = class extends BaseGenerator {
         this.log('End of enterprise-pom generator');
     }
 };
-/**
- *
- * @param {string} str string
- * @returns {string} string with regular expressions escaped
- */
-function escapeRegExp(str) {
-    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&'); // eslint-disable-line
-}

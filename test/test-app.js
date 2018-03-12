@@ -10,7 +10,7 @@ describe('JHipster generator enterprise-pom', () => {
         helpers
             .run(path.join(__dirname, '../generators/app'))
             .inTmpDir((dir) => {
-                fse.copySync(path.join(__dirname, './templates/maven-enterprisepom'), dir);
+                fse.copySync(path.join(__dirname, './templates/enterprisepom'), dir);
             })
             .withOptions({
                 testmode: true
